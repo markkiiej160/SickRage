@@ -513,6 +513,7 @@ class PageTemplate(Template):
         self.sbHttpsPort = sickbeard.WEB_PORT
         self.sbHttpsEnabled = sickbeard.ENABLE_HTTPS
         self.sbHandleReverseProxy = sickbeard.HANDLE_REVERSE_PROXY
+        self.sbThemeName = sickbeard.THEME_NAME
 
         if headers['Host'][0] == '[':
             self.sbHost = re.match("^\[.*\]", headers['Host'], re.X | re.M | re.S).group(0)
@@ -3706,9 +3707,6 @@ class Home(MainHandler):
 
         if not sickbeard.showQueueScheduler.action.isBeingAdded(showObj):  # @UndefinedVariable
             if not sickbeard.showQueueScheduler.action.isBeingUpdated(showObj):  # @UndefinedVariable
-                t.submenu.append(
-                    {'title': 'Delete', 'path': 'home/deleteShow?show=%d&amp;full=1' % showObj.indexerid,
-                     'confirm': True})
                 t.submenu.append(
                     {'title': 'Remove', 'path': 'home/deleteShow?show=%d' % showObj.indexerid, 'confirm': True})
                 t.submenu.append({'title': 'Re-scan files', 'path': 'home/refreshShow?show=%d' % showObj.indexerid})
